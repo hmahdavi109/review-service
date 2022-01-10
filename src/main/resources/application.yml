@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: review-service
+  profiles:
+    active: dev, swagger
+
+
+
+
+logging:
+  config: classpath:logback-spring.xml

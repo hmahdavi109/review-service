@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration>
+
+<configuration>
+
+    <property name="LOG_FILE" value="${LOGS:-./logs}"/>
+
+
+    <appender name="CONSOLE-APPENDER" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>
+                [%d] [%-5level] [%X{request-id}] [%thread] [%X{IP}:%X{USER}] {%logger{36}.%M\(%line\)} %msg%n
+            </Pattern>
+        </layout>
+    </appender>
+
+    <appender name="FILE-APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>./logs/review-service.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>./logs/review-service.log.%d{yyyy-MM-dd}</fileNamePattern>
+        </rollingPolicy>
+        <encoder>
+            <charset>utf-8</charset>
+            <Pattern>
+                [%d] [%-5level] [%X{request-id}] [%thread] [%X{IP}:%X{USER}] {%logger{36}.%M\(%line\)} %msg%n
+            </Pattern>
+        </encoder>
+    </appender>
+
+
+    <root level="INFO">
+        <appender-ref ref="CONSOLE-APPENDER"/>
+        <appender-ref ref="FILE-APPENDER"/>
+    </root>
+
+
+
+
+</configuration>

@@ -1,0 +1,46 @@
+version: "3.8"
+
+services:
+  ##
+  ## postgres database
+  ##
+  postgres:
+    container_name: "review-postgres-db"
+    image: postgres:13
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: REVIEW_SERVICE
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin@123
+
+
+
+  review-service:
+    container_name: "review-service"
+    build:
+      context: .
+    ports:
+      - "9898:9898"
+    volumes:
+      - ./logs:/logs
+    environment:
+      - "SPRING_PROFILES_ACTIVE=prod"
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "500k"
+        max-file: "30"
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+        reservations:
+          memory: 512M
+    depends_on:
+      - postgres
+
