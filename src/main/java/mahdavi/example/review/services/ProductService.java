@@ -67,8 +67,6 @@ public class ProductService {
     }
 
 
-
-
     public PageResponse<ProductResponseDto> findWithPage(Integer page, Integer size) {
 
         Page<Product> productPage = productRepository.findAll(PageRequest.of(page, size));
@@ -80,9 +78,7 @@ public class ProductService {
     }
 
 
-
-    public void updateReviewable(Long id , Boolean isReviewable)
-    {
+    public void updateReviewable(Long id, Boolean isReviewable) {
 
         Optional<Product> optionalProduct = productRepository.findById(id);
 
@@ -100,8 +96,7 @@ public class ProductService {
     }
 
 
-    public void updateVisible(Long id , Boolean isVisible)
-    {
+    public void updateVisible(Long id, Boolean isVisible) {
 
         Optional<Product> optionalProduct = productRepository.findById(id);
 
@@ -119,9 +114,7 @@ public class ProductService {
     }
 
 
-
-    public void updateReviewType(Long id , ReviewType reviewType)
-    {
+    public void updateReviewType(Long id, ReviewType reviewType) {
 
         Optional<Product> optionalProduct = productRepository.findById(id);
 
@@ -140,44 +133,38 @@ public class ProductService {
     //endregion
 
 
-
     //region api services
     public PageResponse<ProductDetailResponseDto> findProductWithDetails(Integer page, Integer size) {
 
-        Page<Product> productPage = productRepository.findByIsVisible(true , PageRequest.of(page, size));
+        Page<Product> productPage = productRepository.findByIsVisible(true, PageRequest.of(page, size));
 
         List<ProductDetailResponseDto> responseDtos = productPage.getContent().stream().map(product -> productMapper.productToDetailResponseDto(product)).collect(Collectors.toList());
 
-        for (ProductDetailResponseDto detailResponseDto : responseDtos)
-        {
+        for (ProductDetailResponseDto detailResponseDto : responseDtos) {
 
-            Page<Comment> last3CommentPage = commentRepository.findByProduct_IdAndCommentStatusOrderByCreationTimeDesc(detailResponseDto.getId() , CommentStatus.APPLIED , PageRequest.of(0, 3));
+            Page<Comment> last3CommentPage = commentRepository.findByProduct_IdAndCommentStatusOrderByCreationTimeDesc(detailResponseDto.getId(), CommentStatus.APPLIED, PageRequest.of(0, 3));
 
-            List<Score> scores = scoreRepository.findByProduct_IdAndScoreStatus(detailResponseDto.getId() , ScoreStatus.APPLIED);
+            List<Score> scores = scoreRepository.findByProduct_IdAndScoreStatus(detailResponseDto.getId(), ScoreStatus.APPLIED);
 
-            Integer sumOfScores = 0 ;
-            for (Score score : scores)
-            {
+            Integer sumOfScores = 0;
+            for (Score score : scores) {
                 sumOfScores += score.getValue();
             }
-
 
 
             detailResponseDto.setComments(last3CommentPage.getContent().stream().map(Comment::getText).collect(Collectors.toList()));
 
             detailResponseDto.setScoreCount(scores.size());
 
-            detailResponseDto.setScoreAverage((double) (sumOfScores / scores.size()));
+            detailResponseDto.setScoreAverage(scores.size() == 0 ? 0 : (double) (sumOfScores / scores.size()));
 
         }
-
 
 
         return new PageResponse<>(responseDtos, productPage.isFirst(), productPage.isLast(), productPage.getTotalElements());
 
     }
     //endregion
-
 
 
 }

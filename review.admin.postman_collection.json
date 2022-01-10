@@ -1,0 +1,409 @@
+{
+	"info": {
+		"_postman_id": "d753e328-14fc-4069-91a5-2e9e0af91bee",
+		"name": "admin",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "provider",
+			"item": [
+				{
+					"name": "findWithPage",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9898/admin/provider?page=0&size=100",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9898",
+							"path": [
+								"admin",
+								"provider"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "100"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"description\": \"string\",\r\n  \"name\": \"string\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9898/admin/provider",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9898",
+							"path": [
+								"admin",
+								"provider"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "product",
+			"item": [
+				{
+					"name": "findWithPage",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9898/admin/product?page=0&size=10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9898",
+							"path": [
+								"admin",
+								"product"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"description\": \"string\",\r\n  \"isReviewable\": true,\r\n  \"isVisible\": true,\r\n  \"name\": \"string\",\r\n  \"providerId\": 0,\r\n  \"reviewType\": \"ALL_USERS\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9898/admin/product",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9898",
+							"path": [
+								"admin",
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update-review-type",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9898/admin/product/update-review-type?id=2&reviewType=ALL_USERS",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9898",
+							"path": [
+								"admin",
+								"product",
+								"update-review-type"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "2"
+								},
+								{
+									"key": "reviewType",
+									"value": "ALL_USERS"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update-reviewable",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9898/admin/product/update-reviewable?id=10&isReviewable=false",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9898",
+							"path": [
+								"admin",
+								"product",
+								"update-reviewable"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "10"
+								},
+								{
+									"key": "isReviewable",
+									"value": "false"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update-visible",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "?http://localhost:9898/admin/product/update-visible?id%3D1111%26isVisible%3Dtrue",
+							"query": [
+								{
+									"key": "http://localhost:9898/admin/product/update-visible?id=1111&isVisible=true",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "comment",
+			"item": [
+				{
+					"name": "findWithPage",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9898/admin/comment?page=0&productId=5&providerId=1&size=10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9898",
+							"path": [
+								"admin",
+								"comment"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "productId",
+									"value": "5",
+									"description": "optioanl"
+								},
+								{
+									"key": "providerId",
+									"value": "1",
+									"description": "optioanl"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "apply-comment",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9898/admin/comment/apply-comment?id=10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9898",
+							"path": [
+								"admin",
+								"comment",
+								"apply-comment"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ignore-comment",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9898/admin/comment/ignore-comment?id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9898",
+							"path": [
+								"admin",
+								"comment",
+								"ignore-comment"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "score",
+			"item": [
+				{
+					"name": "findWithPage",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9898/admin/score?page=0&productId=5&providerId=1&size=10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9898",
+							"path": [
+								"admin",
+								"score"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "productId",
+									"value": "5",
+									"description": "optioanl"
+								},
+								{
+									"key": "providerId",
+									"value": "1",
+									"description": "optioanl"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "apply-comment",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9898/admin/score/apply-comment?id=10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9898",
+							"path": [
+								"admin",
+								"score",
+								"apply-comment"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ignore-comment",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9898/admin/score/ignore-comment?id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9898",
+							"path": [
+								"admin",
+								"score",
+								"ignore-comment"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
